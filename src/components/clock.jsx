@@ -136,6 +136,7 @@ const Clock = () => {
                     <p id="timer-label" ref={label}>
                         Session
                     </p>
+                    {/**if test #8 fails, it seems to pass on 2nd run. dunno why */}
                     <p id="time-left">
                         {minutes < 10 && 0}
                         {minutes}:{seconds < 10 && 0}
