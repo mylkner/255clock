@@ -49,7 +49,7 @@ h1 {
 
 .timer-label-time-left {
     border: 3px solid blue;
-    border-radius: 10px;
+    border-radius: 3vw;
     gap: 0;
     flex-direction: column;
     width: 300px;
