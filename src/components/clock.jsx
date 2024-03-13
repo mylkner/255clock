@@ -9,7 +9,7 @@ const Clock = () => {
     const [isRunning, setIsRunning] = useState(false);
     const [time, setTime] = useState(lengths.sessionLength * 60);
     const label = useRef(null);
-    const pausePlay = useRef(null);
+
     const minutes = Math.floor(time / 60);
     const seconds = time % 60;
 
@@ -66,16 +66,6 @@ const Clock = () => {
         }
     };
 
-    const pausePlayFn = () => {
-        setIsRunning(!isRunning);
-
-        if (!isRunning) {
-            pausePlay.current.className = "fa-solid fa-pause fa-3x";
-        } else {
-            pausePlay.current.className = "fa-solid fa-play fa-3x";
-        }
-    };
-
     const reset = () => {
         setLengths({
             breakLength: 5,
@@ -84,7 +74,6 @@ const Clock = () => {
         setIsRunning(false);
         setTime(25 * 60);
         label.current.innerText = "Session";
-        pausePlay.current.className = "fa-solid fa-play fa-3x";
         document.getElementById("beep").pause();
         document.getElementById("beep").currentTime = 0;
     };
@@ -144,10 +133,16 @@ const Clock = () => {
                     </p>
                 </div>
                 <span className="timer-btns">
-                    <button id="start_stop" onClick={() => pausePlayFn()}>
+                    <button
+                        id="start_stop"
+                        onClick={() => setIsRunning(!isRunning)}
+                    >
                         <i
-                            className="fa-solid fa-play fa-3x"
-                            ref={pausePlay}
+                            className={
+                                isRunning
+                                    ? "fa-solid fa-pause fa-3x"
+                                    : "fa-solid fa-play fa-3x"
+                            }
                         ></i>
                     </button>
                     <button id="reset" onClick={() => reset()}>
